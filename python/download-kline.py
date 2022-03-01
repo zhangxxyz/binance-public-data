@@ -13,8 +13,7 @@ import pandas as pd
 from enums import *
 from utility import download_file, get_all_symbols, get_parser, get_start_end_date_objects, convert_to_date_object, \
   get_path
-
-
+# python .\download-kline.py -startDate 2017-01-01 -endDate 2022-02-28 -folder 'H:\git\data' -i 1m -t um
 def download_monthly_klines(trading_type, symbols, num_symbols, intervals, years, months, start_date, end_date, folder, checksum):
   current = 0
   date_range = None
@@ -93,7 +92,9 @@ def download_daily_klines(trading_type, symbols, num_symbols, intervals, dates, 
 if __name__ == "__main__":
     parser = get_parser('klines')
     args = parser.parse_args(sys.argv[1:])
-
+    # Namespace(checksum=0, dates=None, endDate=None, folder=None,
+    # intervals=['1m', '5m', '15m', '30m', '1h', '2h', '4h', '6h', '8h', '12h', '1d', '3d', '1w', '1mo'],
+    # months=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], startDate=None, symbols=None, type='spot', years=['2017', '2018', '2019', '2020', '2021', '2022'])
     if not args.symbols:
       print("fetching all symbols from exchange")
       symbols = get_all_symbols(args.type)
